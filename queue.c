@@ -1,12 +1,12 @@
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <conio.h>
 #include <stdio.h>
 #include <locale.h>
 
-#define OK (0)
-#define ERROR (1)
+#define OK		(0)
+#define ERROR	(1)
 
-#define MAXN 101/**< максимальное количество элементов в очереди (-1)*/
+#define MAXN 4 /**< максимальное количество элементов в очереди (-1)*/
 
 
 /** структура очереди*/
@@ -84,8 +84,8 @@ void queueClear(struct queue *q)
 		queuePop(q);
 	}
 }
-/** описание структуры очереди закончено */
 
+/** описание структуры очереди закончено */
 int main()
 {
 	setlocale(LC_ALL, "RUS");
@@ -100,54 +100,60 @@ int main()
 	printf("2 - удалить элемент из очереди\n");
 	printf("3 - очистить очередь\n");
 	while (1){
-		scanf_s("%d", &comm);
-		switch (comm)
-		{
-		case 0:
-			printf("Введите элемент:\n");
-			/** Проверяем, что введенное соответствует типу int*/
-			if (scanf_s("%d", &x)){ 
-				if (queueAdd(&Q, x)){ 
-					printf("Очередь переполнена. Элемент не добавлен.\n");
+		if (scanf_s("%d", &comm) && (comm<=3 && comm>=0)){
+			fflush(stdin); /** необходимо для очистки стандартного ввода*/
+			switch (comm)
+			{
+			case 0:
+				printf("Введите элемент:\n");
+				/** Проверяем, что введенное соответствует типу int*/
+				if (scanf_s("%d", &x)){
+					fflush(stdin); /** необходимо для очистки стандартного ввода*/
+					if (queueAdd(&Q, x)){
+						printf("Очередь переполнена. Элемент не добавлен.\n");
+					}
+					else{
+						printf("Ваш элемент в очереди.\n");
+					}
 				}
 				else{
-					printf("Ваш элемент в очереди.\n");
+					printf("Было введено не целое число. Добавление не выполнено.\n");
 				}
+				break;
+			case 1:
+				x = queueGet(&Q);
+				if (x != NULL){
+					printf("%d- был первым элементом в очереди.\n", x);
+				}
+				else{
+					printf("очередь пуста  - получение невозможно.\n");
+				}
+				break;
+			case 2:
+				if (!isempty(&Q)){
+					printf("Элемент удален.\n");
+				}
+				else{
+					printf("очередь и так пуста.\n");
+				}
+				queuePop(&Q);
+				break;
+			case 3:
+				if (!isempty(&Q)){
+					queueClear(&Q);
+					printf("Очередь очищена.\n");
+				}
+				else{
+					printf("Очередь пуста.\n");
+				}
+				break;
+			default:
+				break;
 			}
-			else{ 
-				fflush(stdin); /** необходимо для очистки стандартного ввода*/
-				printf("Было введено не целое число. Добавление не выполнено.\n"); 
-			}
-			break;
-		case 1:
-			x = queueGet(&Q);
-			if (x!=NULL){
-				printf("%d- был первым элементом в очереди.\n", x);
-			}
-			else{
-				printf("очередь пуста  - получение невозможно.\n");
-			}
-			break;
-		case 2:
-			if (!isempty(&Q)){
-				printf("Элемент удален.\n");
-			}
-			else{
-				printf("очередь и так пуста.\n");
-			}
-			queuePop(&Q);
-			break;
-		case 3:
-			if (!isempty(&Q)){
-				queueClear(&Q);
-			}
-			else{
-				printf("Очередь пуста.\n");
-			}
-			break;
-		default:
+		}
+		else{
+			fflush(stdin); /** необходимо для очистки стандартного ввода*/
 			printf("Код инструкции не опознан. Попробуйте еще раз.\n");
-			break;
 		}
 	}
 	return 0;
