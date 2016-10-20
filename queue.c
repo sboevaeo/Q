@@ -10,6 +10,8 @@
 #define UINT32 uint32_t
 typedef UINT32 STATUS;
 
+int element; /** переменная для получения */
+
 /** структура очереди*/
 struct queue
 {
@@ -48,15 +50,14 @@ STATUS isempty(struct queue *q)
 	}
 }
 /** получение элемента из очереди*/
-int queueGet(struct queue *q)
+STATUS queueGet(struct queue *q)
 {
 	if (!isempty(q)){
-		int element; /** переменная для получения */
 		element = q->MyQueue[q->first_element];
-		return element;
+		return OK;
 	}
 	else {
-		return -1;
+		return ERROR;
 	}
 }
 /** Удалить элемент */
@@ -122,9 +123,8 @@ int main()
 				}
 				break;
 			case 1:
-				x = queueGet(&Q);
-				if (x != -1){
-					printf("%d - первый элемент в очереди.\n", x);
+				if (queueGet(&Q) != ERROR){
+					printf("%d- первый элемент в очереди.\n", element);
 				}
 				else{
 					printf("очередь пуста  - получение невозможно.\n");
