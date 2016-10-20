@@ -123,7 +123,7 @@ int main()
 				break;
 			case 1:
 				if (queueGet(&Q) != ERROR){
-					printf("%d- первый элемент в очереди.\n", element);
+					printf("%u- первый элемент в очереди.\n", element);
 				}
 				else{
 					printf("очередь пуста  - получение невозможно.\n");
