@@ -64,7 +64,8 @@ int queueGet(struct queue *q)
 STATUS queuePop(struct queue *q)
 {
 	if (!isempty(q)){
-		for (int i = 0; i < q->last_element; i++){
+		int i;
+		for (i = 0; i < q->last_element; i++){
 			q->MyQueue[i] = q->MyQueue[i + 1];
 		}
 		q->last_element--;
