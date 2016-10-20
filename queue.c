@@ -1,11 +1,11 @@
-#include <stdio.h>
-#include <stdint.h>
-#include <locale.h>
+#include <stdio.h> 
+#include <stdint.h> // для отображения русского языка в консоли
+#include <locale.h> // для типа uint32_t
 
-#define OK	(0)
+#define OK		(0)
 #define ERROR	(1)
 
-#define MAXN 101 /**< максимальное количество элементов в очереди (-1)*/
+#define MAXN 4 /**< максимальное количество элементов в очереди (-1)*/
 
 #define UINT32 uint32_t
 typedef UINT32 STATUS;
@@ -26,7 +26,7 @@ void init(struct queue *q)
 /** добавление элемента x в очередь*/
 STATUS queueAdd(struct queue *q, int x)
 {
-	if (q->last_element< MAXN-1){
+	if (q->last_element< MAXN - 1){
 		q->last_element++;
 		q->MyQueue[q->last_element] = x;
 		return OK;
@@ -53,7 +53,6 @@ int queueGet(struct queue *q)
 	if (!isempty(q)){
 		int element; /** переменная для получения */
 		element = q->MyQueue[q->first_element];
-		queuePop(q);
 		return element;
 	}
 	else {
@@ -102,7 +101,7 @@ int main()
 	printf("2 - удалить элемент из очереди\n");
 	printf("3 - очистить очередь\n");
 	while (1){
-		if (scanf_s("%d", &comm) && (comm<=3 && comm>=0)){
+		if (scanf_s("%d", &comm) && (comm <= 3 && comm >= 0)){
 			fflush(stdin); /** необходимо для очистки стандартного ввода*/
 			switch (comm)
 			{
@@ -112,14 +111,14 @@ int main()
 				if (scanf_s("%d", &x)){
 					fflush(stdin); /** необходимо для очистки стандартного ввода*/
 					if (queueAdd(&Q, x)){
-						printf("Очередь переполнена. Элемент не добавлен.\n");
+						printf("очередь переполнена. Элемент не добавлен.\n");
 					}
 					else{
-						printf("Ваш элемент в очереди.\n");
+						printf("ваш элемент в очереди.\n");
 					}
 				}
 				else{
-					printf("Было введено не целое число. Добавление не выполнено.\n");
+					printf("было введено не целое число. Добавление не выполнено.\n");
 				}
 				break;
 			case 1:
@@ -133,7 +132,7 @@ int main()
 				break;
 			case 2:
 				if (!isempty(&Q)){
-					printf("Элемент удален.\n");
+					printf("элемент удален.\n");
 				}
 				else{
 					printf("очередь и так пуста.\n");
@@ -143,10 +142,10 @@ int main()
 			case 3:
 				if (!isempty(&Q)){
 					queueClear(&Q);
-					printf("Очередь очищена.\n");
+					printf("очередь очищена.\n");
 				}
 				else{
-					printf("Очередь пуста.\n");
+					printf("очередь пуста.\n");
 				}
 				break;
 			default:
@@ -155,7 +154,7 @@ int main()
 		}
 		else{
 			fflush(stdin); /** необходимо для очистки стандартного ввода*/
-			printf("Код инструкции не опознан. Попробуйте еще раз.\n");
+			printf("код инструкции не опознан. Попробуйте еще раз.\n");
 		}
 	}
 	return 0;
