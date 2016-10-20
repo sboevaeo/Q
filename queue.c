@@ -1,11 +1,11 @@
 #include <stdio.h> 
-#include <stdint.h> // для отображения русского языка в консоли
-#include <locale.h> // для типа uint32_t
+#include <stdint.h> 
+#include <locale.h> 
 
 #define OK		(0)
 #define ERROR	(1)
 
-#define MAXN 4 /**< максимальное количество элементов в очереди (-1)*/
+#define MAXN 101 /**< максимальное количество элементов в очереди (-1)*/
 
 #define UINT32 uint32_t
 typedef UINT32 STATUS;
@@ -94,7 +94,7 @@ int main()
 	int comm;
 	int x;
 	init(&Q);
-	/** Вывод инструкций */
+	/** вывод инструкций */
 	printf("Введите код действия: \n");
 	printf("0 - добавить элемент\n");
 	printf("1 - получение элемента из очереди\n");
@@ -124,7 +124,7 @@ int main()
 			case 1:
 				x = queueGet(&Q);
 				if (x != -1){
-					printf("%d- был первым элементом в очереди.\n", x);
+					printf("%d - первый элемент в очереди.\n", x);
 				}
 				else{
 					printf("очередь пуста  - получение невозможно.\n");
