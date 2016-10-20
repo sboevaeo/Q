@@ -1,12 +1,15 @@
 #include <conio.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <locale.h>
 
-#define OK		(0)
+#define OK	(0)
 #define ERROR	(1)
 
 #define MAXN 101 /**< максимальное количество элементов в очереди (-1)*/
 
+#define UINT32 uint32_t
+typedef UINT32 STATUS;
 
 /** структура очереди*/
 struct queue
@@ -22,7 +25,7 @@ void init(struct queue *q)
 	q->last_element = 0;
 }
 /** добавление элемента x в очередь*/
-int queueAdd(struct queue *q, int x)
+STATUS queueAdd(struct queue *q, int x)
 {
 	if (q->last_element< MAXN-1){
 		q->last_element++;
@@ -34,7 +37,7 @@ int queueAdd(struct queue *q, int x)
 	}
 }
 /** проверка пустоты очереди 1- пуста, 0 - не пуста*/
-int isempty(struct queue *q)
+STATUS isempty(struct queue *q)
 {
 	if (q->last_element<q->first_element)
 	{
@@ -59,7 +62,7 @@ int queueGet(struct queue *q)
 	}
 }
 /** Удалить элемент */
-int queuePop(struct queue *q)
+STATUS queuePop(struct queue *q)
 {
 	if (!isempty(q)){
 		for (int i = 0; i < q->last_element; i++){
