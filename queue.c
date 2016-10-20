@@ -1,23 +1,22 @@
 #include <stdio.h> 
-#include <stdint.h> 
-#include <locale.h> 
+#include <locale.h> // для отображения русского языка в консоли
+#include <stdint.h> // для типа uint32_t
 
-#define OK	(0)
+#define OK		(0)
 #define ERROR	(1)
 
-#define MAXN 101 /**< максимальное количество элементов в очереди (-1)*/
+#define MAXN 4 /**< максимальное количество элементов в очереди (-1)*/
 
 #define UINT32 uint32_t
 typedef UINT32 STATUS;
 
-int element; /** переменная для получения */
-
+UINT32 element; /** переменная для получения */
 /** структура очереди*/
 struct queue
 {
-	int MyQueue[MAXN]; /**< создаем массив*/
-	int first_element; /**< позици¤ первого элемента в очереди*/
-	int last_element; /**< позици¤ последнего элемента в очереди*/
+	UINT32 MyQueue[MAXN]; /**< создаем массив*/
+	UINT32 first_element; /**< позиция первого элемента в очереди*/
+	UINT32 last_element; /**< позиция последнего элемента в очереди*/
 };
 /** создатель очереди*/
 void init(struct queue *q)
@@ -64,7 +63,7 @@ STATUS queueGet(struct queue *q)
 STATUS queuePop(struct queue *q)
 {
 	if (!isempty(q)){
-		int i;
+		UINT32 i;
 		for (i = 0; i < q->last_element; i++){
 			q->MyQueue[i] = q->MyQueue[i + 1];
 		}
@@ -92,11 +91,11 @@ int main()
 {
 	setlocale(LC_ALL, "RUS");
 	struct queue Q;
-	int comm;
-	int x;
+	UINT32 comm;
+	UINT32 x;
 	init(&Q);
-	/** вывод инструкций */
-	printf("введите код действия: \n");
+	/** Вывод инструкций */
+	printf("введите код действия : \n");
 	printf("0 - добавить элемент\n");
 	printf("1 - получение элемента из очереди\n");
 	printf("2 - удалить элемент из очереди\n");
