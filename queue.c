@@ -57,7 +57,7 @@ int queueGet(struct queue *q)
 		return element;
 	}
 	else {
-		return NULL;
+		return -1;
 	}
 }
 /** Удалить элемент */
@@ -123,7 +123,7 @@ int main()
 				break;
 			case 1:
 				x = queueGet(&Q);
-				if (x != NULL){
+				if (x != -1){
 					printf("%d- был первым элементом в очереди.\n", x);
 				}
 				else{
