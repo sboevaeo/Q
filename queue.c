@@ -2,7 +2,7 @@
 #include <stdint.h> 
 #include <locale.h> 
 
-#define OK		(0)
+#define OK	(0)
 #define ERROR	(1)
 
 #define MAXN 101 /**< максимальное количество элементов в очереди (-1)*/
